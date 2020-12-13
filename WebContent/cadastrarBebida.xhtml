@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+
+<f:metadata>
+        <f:viewAction action="#{cadastrarBebida.init}" />
+</f:metadata>
+
+<h:head>
+
+	<title>Cadastro de bebidas - Depósito Primefaces</title>
+	<link rel="stylesheet" type="text/css" href="css/primeicons.css"/>
+	<link rel="stylesheet" type="text/css" href="css/primeflex.css"/>
+        
+</h:head>
+
+<h:body>
+
+	 <ui:include src="/menu.xhtml" />
+   
+    
+    <h:form id="bebidaForm" enctype="multipart/form-data" prependId="false">
+
+            <p:messages showDetail="false" showSummary="true" id="mensagens" />
+
+            <p:panel id="panel" header="Cadastrar Bebida" style="margin-bottom:10px;">
+            
+                <div class="p-field p-grid">
+                    <p:outputLabel for="descricao" styleClass="p-col-fixed" style="width:300px" value="Descricao" />
+                    <div class="p-col">
+                        <p:inputText id="descricao" required="true" value="#{cadastrarBebida.bebida.descricao}" requiredMessage="Campo obrigatório."/>
+                        <p:message for="descricao" />
+                    </div>
+                </div>
+
+                <div class="p-field p-grid">
+                    <p:outputLabel for="marca" styleClass="p-col-fixed" style="width:300px" value="Marca" />
+                    <div class="p-col">
+                        <p:inputText id="marca" required="true" value="#{cadastrarBebida.bebida.marca}" requiredMessage="Campo obrigatório."/>
+                        <p:message for="marca" />
+                    </div>
+                </div>
+
+                <div class="p-field p-grid">
+                    <p:outputLabel for="valor_unit" styleClass="p-col-fixed" style="width:300px" value="Valor unitário" />
+                    <div class="p-col">
+                        <p:inputNumber minValue="0" symbol=" R$ " id="valor_unit" value="#{cadastrarBebida.bebida.valorUnitario}" decimalPlaces="2" required="true" requiredMessage="Campo obrigatório."/>
+                        <p:message for="valor_unit" />
+                    </div>
+                </div>
+
+                <div class="p-field p-grid">
+                    <p:outputLabel for="lote" styleClass="p-col-fixed" style="width:300px" value="Lote" />
+                    <div class="p-col">
+                        <p:inputNumber id="lote" decimalSeparator="" thousandSeparator="" value="#{cadastrarBebida.bebida.lote}" minValue="0" decimalPlaces="0" required="true" requiredMessage="Campo obrigatório."/>
+                        <p:message for="lote" />
+                    </div>
+                </div>
+
+                <div class="p-field p-grid">
+                    <p:outputLabel for="quantidade" styleClass="p-col-fixed" style="width:300px" value="Quantidade em estoque" />
+                    <div class="p-col">
+                        <p:inputNumber id="quantidade" minValue="0" decimalPlaces="0" value="#{cadastrarBebida.bebida.qtdEstoque}" required="true" requiredMessage="Campo obrigatório."/>
+                        <p:message for="quantidade" />
+                    </div>
+                </div>
+            </p:panel>
+
+            <p:toolbar>
+                <f:facet name="left">
+                    <p:commandButton value="Salvar" action="#{cadastrarBebida.salvar}" update="bebidaForm"></p:commandButton>
+                    <p:commandButton value="Limpar dados" type="reset" />
+                </f:facet>
+            </p:toolbar>
+        </h:form>
+
+</h:body>
+</html>
